@@ -1,0 +1,45 @@
+<header class="bg-primary shadow-md px-8 py-4 flex justify-between items-center">
+  <div class="flex items-center">
+    <a [routerLink]="['/']">
+      <img src="assets/images/logo.png" alt="Logo do IFBuddy" class="w-[200px]">
+    </a>
+  </div>
+
+  <div class="flex items-center space-x-10">
+    <nav class="hidden md:flex space-x-10 text-white font-medium">
+      <a
+        [routerLink]="['/']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="font-bold hover:text-white"
+        class="hover:text-red hover:cursor-pointer"
+      >
+        Explorar
+      </a>
+      <a
+        [routerLink]="['/conexoes']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="font-bold hover:text-white"
+        class="hover:text-red hover:cursor-pointer"
+      >
+        Conexões
+      </a>
+    </nav>
+
+    <div
+      class="flex items-center space-x-4 hover:cursor-pointer"
+      (click)="menu.toggle($event)"
+      (keydown.enter)="menu.toggle($event)"
+      tabindex="0"
+      role="button"
+      aria-label="Abrir menu do usuário"
+    >
+      <span class="text-white font-medium hover:text-red">{{ usuario?.nome || 'Usuário' }}</span>
+      <app-avatar
+        [nome]="usuario?.nome || 'Usuário'"
+        [src]="usuario?.foto || null"
+        size="md"
+      />
+      <p-menu #menu [popup]="true" [model]="items"></p-menu>
+    </div>
+  </div>
+</header>
