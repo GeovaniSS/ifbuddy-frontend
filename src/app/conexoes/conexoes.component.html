@@ -1,0 +1,37 @@
+<h1 class="text-3xl font-bold text-black mb-12">Conexões</h1>
+
+<h2 class="text-2xl font-bold text-black mb-4">Conexões confirmadas</h2>
+
+<div class="flex flex-col gap-4 mb-24">
+  @for (conexao of listaConexaoesConfirmadas; track $index) {
+  <app-card-conexao
+    [conexao]="conexao"
+    [isSolicitacao]="false"
+    (atualizarConexoes)="carregarConexoes()"
+  />
+  } @empty {
+  <app-card-empty
+    title="Nenhuma conexão confirmada"
+    description="Você ainda não tem conexões. Encontre alguém para formar uma dupla!"
+    iconClass="pi-users"
+  />
+}
+</div>
+
+<h2 class="text-2xl font-bold text-black mb-4">Solicitações de conexão</h2>
+
+<div class="flex flex-col gap-4">
+  @for (conexao of listaSolicitacoesConexao; track $index) {
+  <app-card-conexao
+    [conexao]="conexao"
+    [isSolicitacao]="true"
+    (atualizarConexoes)="carregarConexoes()"
+  />
+  } @empty {
+    <app-card-empty
+      title="Nenhuma solicitação recebida"
+      description="Quando alguém se interessar pelo seu perfil, você verá aqui."
+      iconClass="pi-user-plus"
+    />
+  }
+</div>
