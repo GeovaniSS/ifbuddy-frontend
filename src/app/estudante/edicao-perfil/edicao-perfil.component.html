@@ -1,0 +1,122 @@
+<p-card>
+  <p-stepper [(value)]="activeStep" [linear]="true" class="basis-[40rem]">
+    <p-step-list>
+      <p-step [value]="1" class="flex flex-row flex-auto gap-2">
+        <ng-template #content let-activateCallback="activateCallback" let-value="value">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col gap-2"
+            (click)="activateCallback()"
+          >
+            <span
+              class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                'border-surface': value > activeStep
+              }"
+            >
+              <i class="pi pi-user"></i>
+            </span>
+          </button>
+        </ng-template>
+      </p-step>
+
+      <p-step [value]="2" class="flex flex-row flex-auto gap-2">
+        <ng-template #content let-activateCallback="activateCallback" let-value="value">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col gap-2"
+            (click)="activateCallback()"
+          >
+            <span
+              class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                'border-surface': value > activeStep
+              }"
+            >
+              <i class="pi pi-graduation-cap"></i>
+            </span>
+          </button>
+        </ng-template>
+      </p-step>
+
+      <p-step [value]="3" class="flex flex-row flex-auto gap-2">
+        <ng-template #content let-activateCallback="activateCallback" let-value="value">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col gap-2"
+            (click)="activateCallback()"
+          >
+            <span
+              class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                'border-surface': value > activeStep
+              }"
+            >
+              <i class="pi pi-bullseye"></i>
+            </span>
+          </button>
+        </ng-template>
+      </p-step>
+
+      <p-step [value]="4" class="flex flex-row flex-auto gap-2">
+        <ng-template #content let-activateCallback="activateCallback" let-value="value">
+          <button
+            class="bg-transparent border-0 inline-flex flex-col items-center gap-2"
+            (click)="activateCallback()"
+          >
+            <span
+              class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center"
+              [ngClass]="{
+                'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                'border-surface': value > activeStep
+              }"
+            >
+              <i class="pi pi-clock"></i>
+            </span>
+          </button>
+        </ng-template>
+      </p-step>
+    </p-step-list>
+
+    <p-step-panels>
+      <p-step-panel [value]="1">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-dados-pessoais
+            [formGroup]="dadosPessoaisForm"
+            (nextStep)="activateCallback(2)"
+          />
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="2">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-dados-academicos
+            [formGroup]="dadosAcademicosForm"
+            (nextStep)="activateCallback(3)"
+            (previousStep)="activateCallback(1)"
+          />
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="3">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-caracteristicas
+            [formGroup]="dadosCaracteristicasForm"
+            (nextStep)="activateCallback(4)"
+            (previousStep)="activateCallback(2)"
+          />
+        </ng-template>
+      </p-step-panel>
+
+      <p-step-panel [value]="4">
+        <ng-template #content let-activateCallback="activateCallback">
+          <app-step-disponibilidade
+            [formGroup]="dadosDisponibilidadesForm"
+            (nextStep)="salvar()"
+            (previousStep)="activateCallback(3)"
+          />
+        </ng-template>
+      </p-step-panel>
+    </p-step-panels>
+  </p-stepper>
+</p-card>
