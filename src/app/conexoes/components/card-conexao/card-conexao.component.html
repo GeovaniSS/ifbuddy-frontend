@@ -1,0 +1,77 @@
+<p-card class="w-full">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="flex items-center gap-4">
+      <app-avatar
+        [nome]="conexao?.parceiro?.nome || ''"
+        [src]="conexao?.parceiro?.foto || null"
+        size="xl"
+      />
+      <div>
+        <h2 class="text-xl font-semibold mb-1">{{ conexao?.parceiro?.nome }}</h2>
+        <p>{{ conexao?.dataAceite ? 'Conexão realizada em:' : 'Solicitação realizada em:' }}</p>
+        <p>{{ conexao?.dataAceite || conexao?.dataSolicitacao }}</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-end mt-4 gap-4">
+      @if (!isSolicitacao) {
+        <p-button
+          class="hover:opacity-80 transition"
+          aria-label="Copiar link do email"
+          [link]="true"
+          (onClick)="copiarEmailParaClipboard()"
+        >
+          <img src="assets/images/gmail.png" alt="Gmail" class="w-10 md:w-12" />
+        </p-button>
+        <a
+          [href]="linkWhats"
+          class="hover:opacity-80 transition"
+          aria-label="Enviar mensagem no WhatsApp"
+          target="_blank"
+        >
+          <img src="assets/images/whatsapp.png" alt="Whatsapp" class="w-10 md:w-12" />
+        </a>
+      }
+
+      <p-button
+        type="button"
+        styleClass="md:w-45"
+        label="Ver Perfil"
+        severity="primary"
+        variant="outlined"
+        (onClick)="verPerfil()"
+      />
+
+      @if (!isSolicitacao) {
+        <p-button
+          type="button"
+          label="Desfazer conexão"
+          severity="danger"
+          variant="outlined"
+          [loading]="loadingService.loading$ | async"
+          [disabled]="loadingService.loading$ | async"
+          (onClick)="desfazerConexao()"
+          styleClass="md:w-45"
+        />
+      } @else {
+        <p-button
+          type="button"
+          label="Aceitar"
+          severity="primary"
+          [loading]="loadingService.loading$ | async"
+          [disabled]="loadingService.loading$ | async"
+          (onClick)="aceitarConexao()"
+          styleClass="md:w-45"
+        />
+        <p-button
+          type="button"
+          label="Recusar"
+          severity="danger"
+          [loading]="loadingService.loading$ | async"
+          [disabled]="loadingService.loading$ | async"
+          (onClick)="recusarConexao()"
+          styleClass="md:w-45"
+        />
+      }
+    </div>
+  </div>
+</p-card>
