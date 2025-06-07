@@ -18,6 +18,7 @@ module.exports = tseslint.config(
     processor: angular.processInlineTemplates,
     plugins: { prettier },
     rules: {
+      "@angular-eslint/prefer-standalone": "off",
       "@angular-eslint/directive-selector": [
         "error",
         {

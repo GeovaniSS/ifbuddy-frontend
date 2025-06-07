@@ -1,15 +1,18 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
 @plugin "tailwindcss-primeui";
 
+@theme {
+  --color-primary: #007f3d;
+  --color-red: #cd191e;
+}
+
 html {
-  font-family: "Open Sans", sans-serif;
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
   margin: 0;
-  padding: 2rem;
   min-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
