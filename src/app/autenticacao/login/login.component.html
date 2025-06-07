@@ -1,0 +1,75 @@
+<h2 class="text-4xl font-bold mb-6">Acesse a sua conta</h2>
+
+<form class="mb-6" [formGroup]="loginForm" (submit)="login()">
+  <div class="mb-6">
+    <label for="email" class="block text-md font-medium text-gray-700 mb-1">Email</label>
+    <input
+      id="email"
+      class="w-full"
+      type="text"
+      placeholder="Digite seu e-mail institucional"
+      formControlName="email"
+      pSize="large"
+      pInputText
+      [ngClass]="{
+        'ng-invalid ng-dirty': email?.touched && email?.invalid
+      }"
+    />
+    @if (email?.touched && email?.invalid && email?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Preencha o campo de e-mail.</span>
+      </p-message>
+    }
+  </div>
+
+  <div class="mb-8">
+    <label for="senha" class="block text-md font-medium text-gray-700 mb-1">Senha</label>
+    <p-password
+      inputId="senha"
+      class="w-full"
+      placeholder="Digite sua senha"
+      size="large"
+      formControlName="senha"
+      [toggleMask]="true"
+      [fluid]="true"
+      [feedback]="false"
+      [ngClass]="{
+        'ng-invalid ng-dirty': senha?.touched && senha?.invalid
+      }"
+    />
+    @if (senha?.touched && senha?.invalid && senha?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Preencha o campo de senha.</span>
+      </p-message>
+    }
+  </div>
+
+  <p-button
+    type="submit"
+    styleClass="w-full h-12 text-lg font-semibold"
+    [loading]="loadingService.loading$ | async"
+    [disabled]="loadingService.loading$ | async"
+  >
+    Entrar
+  </p-button>
+</form>
+
+<p class="text-md text-center">
+  Não tem uma conta?
+  <a
+    routerLink="/autenticacao/cadastro"
+    class="text-primary hover:underline hover:cursor-pointer"
+  >
+    Cadastre-se
+  </a>
+</p>
