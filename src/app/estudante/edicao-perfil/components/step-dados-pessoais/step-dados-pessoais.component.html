@@ -1,0 +1,299 @@
+<div class="text-center mt-4 mb-4 text-xl font-semibold">Informações Pessoais</div>
+<div class="flex gap-12">
+  <!-- <div class="flex flex-col justify-center items-center">
+    <label
+      for="foto"
+      class="block text-md font-medium text-gray-700 mb-1"
+    >
+      Foto
+    </label>
+    <app-avatar
+      nome="Geovani Silva"
+      size="2xl"
+      class="mb-4"
+    />
+    <p-fileupload
+      mode="basic"
+      chooseLabel="Upload"
+      chooseIcon="pi pi-upload"
+      name="demo[]"
+      url="https://www.primefaces.org/cdn/api/upload.php"
+      accept="image/*"
+      maxFileSize="1000000"
+    />
+  </div> -->
+  <div
+    class="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+    [formGroup]="formGroup"
+  >
+    <div>
+      <label
+        for="genero"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Gênero
+      </label>
+      <p-select
+        [options]="generosOptions"
+        inputId="genero"
+        formControlName="genero"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Selecione o seu gênero"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': genero?.touched && genero?.invalid
+        }"
+      />
+      @if (genero?.touched && genero?.invalid && genero?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Gênero é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="dataNascimento"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Data de nascimento
+      </label>
+      <p-datepicker
+        inputId="dataNascimento"
+        dateFormat="dd/mm/yy"
+        placeholder="Informe a sua data de nascimento"
+        formControlName="dataNascimento"
+        size="large"
+        styleClass="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': dataNascimento?.touched && dataNascimento?.invalid
+        }"
+      />
+      @if (dataNascimento?.touched && dataNascimento?.invalid && dataNascimento?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Data de nascimento é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="telefone"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Telefone
+      </label>
+      <p-input-mask
+        inputId="telefone"
+        mask="(99) 99999-9999"
+        placeholder="Informe o seu telefone"
+        formControlName="telefone"
+        size="large"
+        styleClass="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': telefone?.touched && telefone?.invalid
+        }"
+      />
+      @if (telefone?.touched && telefone?.invalid && telefone?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Telefone é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="uf"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Estado
+      </label>
+      <p-select
+        [options]="estadosOptions"
+        inputId="uf"
+        formControlName="uf"
+        optionLabel="sigla"
+        optionValue="sigla"
+        [filter]="true"
+        filterBy="sigla"
+        [virtualScroll]="true"
+        [virtualScrollItemSize]="38"
+        placeholder="Selecione o seu estado"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': uf?.touched && uf?.invalid
+        }"
+      />
+      @if (uf?.touched && uf?.invalid && uf?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Estado é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="cidade"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Cidade
+      </label>
+      <p-select
+        [options]="cidadesOptions"
+        inputId="cidade"
+        formControlName="cidade"
+        optionLabel="nome"
+        optionValue="nome"
+        [filter]="true"
+        filterBy="nome"
+        [virtualScroll]="true"
+        [virtualScrollItemSize]="38"
+        placeholder="Selecione a sua cidade"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': cidade?.touched && cidade?.invalid
+        }"
+      />
+      @if (cidade?.touched && cidade?.invalid && cidade?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Cidade é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="bairro"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Bairro
+      </label>
+      <input
+        id="bairro"
+        type="text"
+        placeholder="Informe o seu bairro"
+        formControlName="bairro"
+        pSize="large"
+        class="w-full"
+        pInputText
+        [ngClass]="{
+          'ng-invalid ng-dirty': bairro?.touched && bairro?.invalid
+        }"
+      />
+      @if (bairro?.touched && bairro?.invalid && bairro?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Bairro é obrigatório</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="trabalha"
+        class="block text-md font-medium text-gray-700 mb-2"
+      >
+        Trabalha?
+      </label>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex items-center">
+          <p-radiobutton
+            name="trabalha"
+            [value]="true"
+            inputId="sim"
+            formControlName="trabalha"
+            size="large"
+          />
+          <label
+            for="sim"
+            class="ml-2"
+          >
+            Sim
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <p-radiobutton
+            name="trabalha"
+            [value]="false"
+            inputId="nao"
+            formControlName="trabalha"
+            size="large"
+          />
+          <label
+            for="nao"
+            class="ml-2"
+          >
+            Não
+          </label>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label
+        for="ocupacao"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Ocupação
+      </label>
+      <input
+        id="ocupacao"
+        type="text"
+        placeholder="Informe a sua ocupação"
+        formControlName="ocupacao"
+        pSize="large"
+        class="w-full"
+        pInputText
+        [ngClass]="{
+          'ng-invalid ng-dirty': ocupacao?.touched && ocupacao?.invalid
+        }"
+      />
+      @if (ocupacao?.touched && ocupacao?.invalid && ocupacao?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Ocupação é obrigatório</span>
+        </p-message>
+      }
+    </div>
+  </div>
+</div>
+<div class="flex mt-8 justify-end">
+  <p-button
+    (onClick)="avancar()"
+    label="Avançar"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    styleClass="md:w-30"
+  />
+</div>
