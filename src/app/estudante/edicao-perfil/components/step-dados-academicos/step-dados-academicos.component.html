@@ -1,0 +1,194 @@
+<div class="text-center mt-4 mb-4 text-xl font-semibold">Informações Acadêmicas</div>
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8" [formGroup]="formGroup">
+  <div>
+    <label for="cursoId" class="block text-md font-medium text-gray-700 mb-1">Curso</label>
+    <p-select
+      [options]="cursosOptions"
+      inputId="cursoId"
+      formControlName="cursoId"
+      optionLabel="nome"
+      optionValue="cursoId"
+      placeholder="Selecione o seu curso"
+      size="large"
+      class="w-full"
+      (onChange)="onCursoChange($event)"
+      [ngClass]="{
+        'ng-invalid ng-dirty': curso?.touched && curso?.invalid
+      }"
+    />
+    @if (curso?.touched && curso?.invalid && curso?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Curso é obrigatório</span>
+      </p-message>
+    }
+  </div>
+  <div>
+    <label for="turno" class="block text-md font-medium text-gray-700 mb-1">Turno</label>
+    <p-select
+      [options]="turnosOptions"
+      inputId="turno"
+      formControlName="turno"
+      placeholder="Selecione o turno em que você está matriculado"
+      optionLabel="label"
+      optionValue="value"
+      size="large"
+      class="w-full"
+      [ngClass]="{
+        'ng-invalid ng-dirty': turno?.touched && turno?.invalid
+      }"
+    />
+    @if (turno?.touched && turno?.invalid && turno?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Turno é obrigatório</span>
+      </p-message>
+    }
+  </div>
+  <div>
+    <label
+      for="semestre"
+      class="block text-md font-medium text-gray-700 mb-1"
+    >
+      Em que semestre você está?
+    </label>
+    <p-select
+      [options]="semestresOptions"
+      inputId="semestreAtual"
+      formControlName="semestreAtual"
+      placeholder="Selecione o semestre atual"
+      optionLabel="label"
+      optionValue="value"
+      size="large"
+      class="w-full"
+      [ngClass]="{
+        'ng-invalid ng-dirty': semestreAtual?.touched && semestreAtual?.invalid
+      }"
+    />
+    @if (semestreAtual?.touched && semestreAtual?.invalid && semestreAtual?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Semestre é obrigatório</span>
+      </p-message>
+    }
+  </div>
+  <div>
+    <label
+      for="tipoTCC"
+      class="block text-md font-medium text-gray-700 mb-1"
+    >
+      Qual tipo de trabalho acadêmico você quer fazer?
+    </label>
+    <p-select
+      [options]="tiposTCCOptions"
+      inputId="tipoTCC"
+      formControlName="tipoTCC"
+      placeholder="Selecione o tipo de TCC"
+      optionLabel="label"
+      optionValue="value"
+      size="large"
+      class="w-full"
+      [ngClass]="{
+        'ng-invalid ng-dirty': tipoTCC?.touched && tipoTCC?.invalid
+      }"
+    />
+    @if (tipoTCC?.touched && tipoTCC?.invalid && tipoTCC?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Tipo de TCC é obrigatório</span>
+      </p-message>
+    }
+  </div>
+  <div>
+    <label
+      for="objetivoTCC"
+      class="block text-md font-medium text-gray-700 mb-1"
+    >
+      Qual o seu objetivo com o TCC?
+    </label>
+    <input
+      id="objetivoTCC"
+      type="text"
+      placeholder="Escreva o seu objetivo com o TCC"
+      formControlName="objetivoTCC"
+      pSize="large"
+      class="w-full"
+      pInputText
+      [ngClass]="{
+        'ng-invalid ng-dirty': objetivoTCC?.touched && objetivoTCC?.invalid
+      }"
+    />
+    @if (objetivoTCC?.touched && objetivoTCC?.invalid && objetivoTCC?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Objetivo do TCC é obrigatório</span>
+      </p-message>
+    }
+  </div>
+  <div>
+    <label
+      for="descricao"
+      class="block text-md font-medium text-gray-700 mb-1"
+    >
+      Apresente-se aos outros estudantes
+    </label>
+    <textarea
+      pTextarea
+      formControlName="descricao"
+      placeholder="Escreva um texto que ajude alguém a escolher você como parceiro de TCC"
+      pSize="large"
+      prows="10"
+      class="w-full"
+      [ngClass]="{
+        'ng-invalid ng-dirty': descricao?.touched && descricao?.invalid
+      }"
+    >
+    </textarea>
+    @if (descricao?.touched && descricao?.invalid && descricao?.errors?.['required']) {
+      <p-message
+        variant="simple"
+        size="small"
+        severity="error"
+        styleClass="mt-1"
+      >
+        <span>Apresentação é obrigatório</span>
+      </p-message>
+    }
+  </div>
+</div>
+<div class="flex mt-8 justify-end">
+  <p-button
+    (onClick)="voltar()"
+    label="Voltar"
+    severity="secondary"
+    icon="pi pi-arrow-left"
+    styleClass="md:w-30"
+  />
+  <p-button
+    (onClick)="avancar()"
+    label="Avançar"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    styleClass="md:w-30 ml-4"
+  />
+</div>
