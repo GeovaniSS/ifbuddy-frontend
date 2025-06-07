@@ -1,0 +1,17 @@
+<p-toast position="top-center" [baseZIndex]="1" />
+<div class="min-h-screen flex flex-col md:flex-row">
+  <div class="p-8 md:p-0 md:w-4/5 bg-primary flex flex-col items-center justify-center">
+    <div class="w-4/5 flex flex-col items-start">
+      <img src="assets/images/logo-grande.png" alt="Logo IFBuddy">
+      <h1 class="hidden md:block text-5xl font-bold text-white pl-10">
+        Conectando estudantes <br>
+        para trabalhos que transformam.
+      </h1>
+    </div>
+  </div>
+  <div class="md:w-2/5 flex items-center justify-center p-8">
+    <div class="w-full max-w-md">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
