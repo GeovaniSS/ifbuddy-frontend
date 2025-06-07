@@ -1,0 +1,31 @@
+<div class="h-full flex flex-col p-6 border border-gray-200 rounded-2xl bg-gray-50">
+  <div class="flex items-center space-x-4 mb-4">
+    <app-avatar [nome]="estudante?.nome || ''" size="xl" />
+    <div>
+      <h2 class="text-xl font-semibold mb-1">{{ estudante?.nome }}</h2>
+      <p>{{ estudante?.nomeCurso }} - {{ estudante?.turno }}</p>
+      <p> {{ estudante?.semestreAtual }}º Semestre</p>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4">
+    @for (tema of estudante?.temas; track $index) {
+      <p-tag  severity="secondary" [value]="tema" />
+    }
+  </div>
+  <div class="flex justify-end mt-auto">
+    <p-button
+      type="button"
+      label="Ver Perfil"
+      severity="primary"
+      variant="outlined"
+      (onClick)="verPerfil()"
+    />
+    <p-button
+      type="button"
+      class="ml-4"
+      label="Conectar"
+      severity="primary"
+      (onClick)="conectar()"
+    />
+  </div>
+</div>
