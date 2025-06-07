@@ -1,0 +1,119 @@
+<div class="flex flex-col gap-2 mx-auto">
+  <div class="text-center mt-4 mb-4 text-xl font-semibold">
+    Características Pessoais
+  </div>
+  <p class="text-center text-md mb-12">
+    Conte um pouco sobre suas habilidades, interesses e temas que gostaria de abordar no TCC. Essas informações ajudam outros estudantes a escolher você como parceiro de TCC.
+  </p>
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8" [formGroup]="formGroup">
+    <div>
+      <label
+        for="pontosFortes"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Meus Pontos Fortes
+      </label>
+      <p-multiselect
+        [options]="caracteristicasOptions"
+        inputId="pontosFortes"
+        formControlName="pontosFortesIds"
+        optionLabel="descricao"
+        optionValue="caracteristicaId"
+        placeholder="Selecione até 5 pontos fortes"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': pontosFortes?.touched && pontosFortes?.invalid
+        }"
+      />
+      @if (pontosFortes?.touched && pontosFortes?.invalid && pontosFortes?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione pelo menos 1 ponto forte</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="pontosFracos"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Meus Pontos Fracos
+      </label>
+      <p-multiselect
+        [options]="caracteristicasOptions"
+        inputId="pontosFracos"
+        formControlName="pontosFracosIds"
+        optionLabel="descricao"
+        optionValue="caracteristicaId"
+        placeholder="Selecione até 5 pontos fracos"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': pontosFracos?.touched && pontosFracos?.invalid
+        }"
+      />
+      @if (pontosFracos?.touched && pontosFracos?.invalid && pontosFracos?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione pelo menos 1 ponto fraco</span>
+        </p-message>
+      }
+    </div>
+    <div>
+      <label
+        for="temas"
+        class="block text-md font-medium text-gray-700 mb-1"
+      >
+        Temas de Interesse
+      </label>
+      <p-multiselect
+        [options]="temasOptions"
+        inputId="temas"
+        formControlName="temasIds"
+        optionLabel="nomeTema"
+        optionValue="temaId"
+        placeholder="Selecione até 5 temas de interesse"
+        size="large"
+        class="w-full"
+        [ngClass]="{
+          'ng-invalid ng-dirty': temas?.touched && temas?.invalid
+        }"
+      />
+      @if (temas?.touched && temas?.invalid && temas?.errors?.['required']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione pelo menos 1 tema</span>
+        </p-message>
+      }
+    </div>
+  </div>
+</div>
+<div class="flex pt-6 justify-end">
+  <p-button
+    (onClick)="voltar()"
+    label="Voltar"
+    severity="secondary"
+    icon="pi pi-arrow-left"
+    styleClass="md:w-30"
+  />
+  <p-button
+    (onClick)="avancar()"
+    label="Avançar"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    styleClass="md:w-30 ml-4"
+  />
+</div>
