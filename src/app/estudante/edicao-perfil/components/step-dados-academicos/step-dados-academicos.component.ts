@@ -3,7 +3,6 @@ import { Curso } from '../../../../core/types/curso';
 import { TipoTCC } from '../../../../core/enums/tipo-tcc';
 import { FormGroup } from '@angular/forms';
 import { TurnoCurso } from '../../../../core/enums/turno-curso';
-import { SelectChangeEvent } from 'primeng/select';
 import { CursoService } from '../../../../shared/services/curso/curso.service';
 
 const DEFAULT_TURNOS = [
@@ -119,6 +118,9 @@ export class StepDadosAcademicosComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarOpcoesFormulario();
+    this.curso?.valueChanges.subscribe(cursoId => {
+      this.onCursoChange(cursoId);
+    });
   }
 
   carregarOpcoesFormulario() {
@@ -127,9 +129,9 @@ export class StepDadosAcademicosComponent implements OnInit {
     });
   }
 
-  onCursoChange({ value }: SelectChangeEvent) {
+  onCursoChange(cursoId: number) {
     const cursoSelecionado = this.cursosOptions.find(
-      curso => curso.cursoId === value,
+      curso => curso.cursoId === cursoId,
     );
     if (!cursoSelecionado) return;
     this.turno?.reset();

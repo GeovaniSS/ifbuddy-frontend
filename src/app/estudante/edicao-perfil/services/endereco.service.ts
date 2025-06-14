@@ -11,13 +11,13 @@ export class EnderecoService {
 
   listarEstados() {
     return this.http.get<Estado[]>(
-      `${environment.ibgeUrl}/localidades/estados`,
+      `${environment.ibgeUrl}/localidades/estados?orderBy=nome`,
     );
   }
 
   listarCidadesPorEstado(estadoId: number) {
     return this.http.get<Cidade[]>(
-      `${environment.ibgeUrl}/localidades/estados/${estadoId}/subdistritos`,
+      `${environment.ibgeUrl}/localidades/estados/${estadoId}/subdistritos?orderBy=nome`,
     );
   }
 }
