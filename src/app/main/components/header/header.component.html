@@ -5,7 +5,7 @@
     </a>
   </div>
 
-  <div class="flex items-center space-x-10">
+  <div class="flex items-center space-x-4 md:space-x-10">
     <nav class="hidden md:flex space-x-10 text-white font-medium">
       <a
         [routerLink]="['/']"
@@ -26,7 +26,7 @@
     </nav>
 
     <div
-      class="flex items-center space-x-4 hover:cursor-pointer"
+      class="flex items-center md:space-x-4 hover:cursor-pointer"
       (click)="menu.toggle($event)"
       (keydown.enter)="menu.toggle($event)"
       tabindex="0"
@@ -39,7 +39,18 @@
         [src]="usuario?.foto || null"
         size="md"
       />
-      <p-menu #menu [popup]="true" [model]="items"></p-menu>
+      <p-menu #menu [popup]="true" [model]="items" appendTo="body"></p-menu>
+    </div>
+
+    <div class="md:hidden">
+      <button
+        (click)="menuMobile.toggle($event)"
+        aria-label="Abrir menu mobile"
+        class="text-white hover:text-red focus:outline-none"
+      >
+        <i class="pi pi-bars" style="font-size: 2rem"></i>
+      </button>
+      <p-menu #menuMobile [popup]="true" [model]="itemsMobile" appendTo="body"></p-menu>
     </div>
   </div>
 </header>

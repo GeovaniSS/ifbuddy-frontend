@@ -38,6 +38,22 @@ export class HeaderComponent implements OnInit {
       },
     },
   ];
+  itemsMobile: MenuItem[] = [
+    {
+      label: 'Explorar',
+      icon: 'pi pi-home',
+      command: () => {
+        this.router.navigate(['/']);
+      },
+    },
+    {
+      label: 'Conexões',
+      icon: 'pi pi-users',
+      command: () => {
+        this.router.navigate(['/conexoes']);
+      },
+    },
+  ];
 
   constructor(
     private router: Router,
