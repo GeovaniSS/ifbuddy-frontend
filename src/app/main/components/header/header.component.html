@@ -42,8 +42,9 @@
       <p-menu #menu [popup]="true" [model]="items" appendTo="body"></p-menu>
     </div>
 
-    <div class="md:hidden">
+    <div class="md:hidden h-[32px]">
       <button
+        type="button"
         (click)="menuMobile.toggle($event)"
         aria-label="Abrir menu mobile"
         class="text-white hover:text-red focus:outline-none"
