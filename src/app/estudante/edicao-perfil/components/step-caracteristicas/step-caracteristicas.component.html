@@ -36,6 +36,16 @@
           <span>Selecione pelo menos 1 ponto forte</span>
         </p-message>
       }
+      @if(pontosFortes?.touched && pontosFortes?.invalid && pontosFortes?.errors?.['maxlength']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione no máximo 5 pontos fortes</span>
+        </p-message>
+      }
     </div>
     <div>
       <label
@@ -67,6 +77,16 @@
           <span>Selecione pelo menos 1 ponto fraco</span>
         </p-message>
       }
+      @if(pontosFracos?.touched && pontosFracos?.invalid && pontosFracos?.errors?.['maxlength']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione no máximo 5 pontos fracos</span>
+        </p-message>
+      }
     </div>
     <div>
       <label
@@ -96,6 +116,16 @@
           styleClass="mt-1"
         >
           <span>Selecione pelo menos 1 tema</span>
+        </p-message>
+      }
+      @if(temas?.touched && temas?.invalid && temas?.errors?.['maxlength']) {
+        <p-message
+          variant="simple"
+          size="small"
+          severity="error"
+          styleClass="mt-1"
+        >
+          <span>Selecione no máximo 5 temas</span>
         </p-message>
       }
     </div>

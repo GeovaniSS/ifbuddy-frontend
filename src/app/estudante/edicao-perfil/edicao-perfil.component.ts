@@ -76,9 +76,9 @@ export class EdicaoPerfilComponent implements OnInit {
         descricao: ['', Validators.required],
       }),
       dadosCaracteristicas: this.formBuilder.group({
-        temasIds: [[], Validators.required],
-        pontosFortesIds: [[], Validators.required],
-        pontosFracosIds: [[], Validators.required],
+        temasIds: [[], [Validators.required, Validators.maxLength(5)]],
+        pontosFortesIds: [[], [Validators.required, Validators.maxLength(5)]],
+        pontosFracosIds: [[], [Validators.required, Validators.maxLength(5)]],
       }),
       dadosDisponibilidades: this.formBuilder.group({
         disponibilidades: this.formBuilder.array([
