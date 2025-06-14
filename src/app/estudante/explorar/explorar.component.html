@@ -12,4 +12,7 @@
       (conexaoSolicitada)="listarEstudantes()"
     />
   }
+  @if (listaEstudante.length === 0) {
+    <p class="col-span-3 text-center text-black">Nenhum estudante encontrado.</p>
+  }
 </div>

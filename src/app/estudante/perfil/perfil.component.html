@@ -1,61 +1,157 @@
-<p-card class="w-full">
+<p-card class="w-full" *ngIf="(loadingService.loading$ | async) || !estudante; else perfilEstudante">
   <p-button
     type="button"
     icon="pi pi-arrow-left"
-    (onClick)="voltar()"
     severity="secondary"
     styleClass="p-button-text"
     size="large"
     aria-label="Voltar"
   />
+
   <div class="flex justify-between">
     <div class="flex flex-col items-center md:flex-row md:items-start gap-4">
-      <app-avatar
-        [nome]="estudante?.nome || ''"
-        [src]="estudante?.foto || null"
-        size="2xl"
-      />
+      <p-skeleton shape="circle" size="12rem" class="md:mt-0"></p-skeleton>
+
       <div class="md:mt-5">
-        <h2 class="text-3xl md:text-4xl text-center md:text-start font-semibold mb-2">{{ estudante?.nome }}</h2>
-        <p class="text-xl md:text-2xl mb-1">{{ estudante?.nomeCurso }} • {{ estudante?.turno }}</p>
-        <p class="text-xl md:text-2xl">{{ estudante?.semestreAtual }}º Semestre</p>
+        <p-skeleton width="200px" height="2rem" styleClass="mb-2"></p-skeleton>
+        <p-skeleton width="150px" height="1.5rem" styleClass="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.5rem"></p-skeleton>
       </div>
     </div>
-    @if (!hasConexao && !isPersonalProfile) {
-      <div class="hidden md:block mt-5">
-        <p-button
-          label="Conectar"
-          severity="primary"
-          styleClass="md:w-40 h-12"
-          [loading]="loadingService.loading$ | async"
-          [disabled]="loadingService.loading$ | async"
-          (onClick)="conectar()"
-        />
-      </div>
-    }
+    <div class="hidden md:block mt-5">
+      <p-skeleton width="120px" height="3rem"></p-skeleton>
+    </div>
   </div>
-  @if (estudante?.descricao) {
+
   <div class="mt-6 mb-8">
     <h3 class="text-2xl font-semibold mb-2">Sobre mim</h3>
-    <p class="text-xl">{{ estudante?.descricao }}</p>
+    <p-skeleton width="100%" height="4rem"></p-skeleton>
   </div>
-  }
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-8">
     <div class="flex align-top gap-4">
-      <i class="pi pi-graduation-cap mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+      <p-skeleton shape="circle" size="1.5rem" class="mt-1"></p-skeleton>
       <div>
-        <h4 class="text-xl font-semibold mb-1">Curso</h4>
-        <p class="text-xl">{{ estudante?.nomeCurso }}</p>
+        <p-skeleton width="80px" height="1.25rem" class="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.25rem"></p-skeleton>
       </div>
     </div>
     <div class="flex align-top gap-4">
-      <i class="pi pi-map-marker mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+      <p-skeleton shape="circle" size="1.5rem" class="mt-1"></p-skeleton>
       <div>
-        <h4 class="text-xl font-semibold mb-1">Endereço</h4>
-        <p class="text-xl">{{ estudante?.cidade }} - {{ estudante?.uf }}</p>
+        <p-skeleton width="80px" height="1.25rem" class="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.25rem"></p-skeleton>
       </div>
     </div>
-    @if (estudante?.trabalha) {
+    <div class="flex align-top gap-4">
+      <p-skeleton shape="circle" size="1.5rem" class="mt-1"></p-skeleton>
+      <div>
+        <p-skeleton width="80px" height="1.25rem" class="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.25rem"></p-skeleton>
+      </div>
+    </div>
+    <div class="flex align-top gap-4">
+      <p-skeleton shape="circle" size="1.5rem" class="mt-1"></p-skeleton>
+      <div>
+        <p-skeleton width="80px" height="1.25rem" class="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.25rem"></p-skeleton>
+      </div>
+    </div>
+    <div class="flex align-top gap-4">
+      <p-skeleton shape="circle" size="1.5rem" class="mt-1"></p-skeleton>
+      <div>
+        <p-skeleton width="80px" height="1.25rem" class="mb-1"></p-skeleton>
+        <p-skeleton width="100px" height="1.25rem"></p-skeleton>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-8">
+    <h4 class="text-xl font-semibold mb-4">Temas</h4>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <p-skeleton width="80px" height="2rem"></p-skeleton>
+      <p-skeleton width="100px" height="2rem"></p-skeleton>
+      <p-skeleton width="70px" height="2rem"></p-skeleton>
+      <p-skeleton width="90px" height="2rem"></p-skeleton>
+    </div>
+  </div>
+
+  <div class="mb-8">
+    <h4 class="text-xl font-semibold mb-4">Pontos Fortes</h4>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <p-skeleton width="90px" height="2rem"></p-skeleton>
+      <p-skeleton width="70px" height="2rem"></p-skeleton>
+      <p-skeleton width="110px" height="2rem"></p-skeleton>
+    </div>
+  </div>
+
+  <div class="mb-8">
+    <h4 class="text-xl font-semibold mb-4">Pontos Fracos</h4>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <p-skeleton width="85px" height="2rem"></p-skeleton>
+      <p-skeleton width="60px" height="2rem"></p-skeleton>
+      <p-skeleton width="100px" height="2rem"></p-skeleton>
+    </div>
+  </div>
+
+  <div>
+    <h4 class="text-xl font-semibold mb-4">Disponibilidade para trabalhar no TCC</h4>
+    <p-skeleton width="100%" height="150px"></p-skeleton>
+  </div>
+</p-card>
+
+<ng-template #perfilEstudante>
+  <p-card class="w-full">
+    <p-button
+      type="button"
+      icon="pi pi-arrow-left"
+      (onClick)="voltar()"
+      severity="secondary"
+      styleClass="p-button-text"
+      size="large"
+      aria-label="Voltar"
+    />
+    <div class="flex justify-between">
+      <div class="flex flex-col items-center md:flex-row md:items-start gap-4">
+        <app-avatar
+          [nome]="estudante?.nome || ''"
+          [src]="estudante?.foto || null"
+          size="2xl"
+        />
+        <div class="md:mt-5">
+          <h2 class="text-3xl md:text-4xl text-center md:text-start font-semibold mb-2">{{ estudante?.nome }}</h2>
+          <p class="text-xl md:text-2xl mb-1">{{ estudante?.nomeCurso }} • {{ estudante?.turno }}</p>
+          <p class="text-xl md:text-2xl">{{ estudante?.semestreAtual }}º Semestre</p>
+        </div>
+      </div>
+      @if (!hasConexao && !isPersonalProfile) {
+      <div class="hidden md:block mt-5">
+        <p-button label="Conectar" severity="primary" styleClass="md:w-40 h-12" [loading]="loadingService.loading$ | async" [disabled]="loadingService.loading$ | async" (onClick)="conectar()" />
+      </div>
+      }
+    </div>
+    @if (estudante?.descricao) {
+    <div class="mt-6 mb-8">
+      <h3 class="text-2xl font-semibold mb-2">Sobre mim</h3>
+      <p class="text-xl">{{ estudante?.descricao }}</p>
+    </div>
+    }
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-8">
+      <div class="flex align-top gap-4">
+        <i class="pi pi-graduation-cap mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+        <div>
+          <h4 class="text-xl font-semibold mb-1">Curso</h4>
+          <p class="text-xl">{{ estudante?.nomeCurso }}</p>
+        </div>
+      </div>
+      <div class="flex align-top gap-4">
+        <i class="pi pi-map-marker mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+        <div>
+          <h4 class="text-xl font-semibold mb-1">Endereço</h4>
+          <p class="text-xl">{{ estudante?.cidade }} - {{ estudante?.uf }}</p>
+        </div>
+      </div>
+      @if (estudante?.trabalha) {
       <div class="flex align-top gap-4">
         <i class="pi pi-briefcase mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
         <div>
@@ -63,65 +159,66 @@
           <p class="text-xl">{{ estudante?.ocupacao }}</p>
         </div>
       </div>
-    }
-    <div class="flex align-top gap-4">
-      <i class="pi pi-file mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
-      <div>
-        <h4 class="text-xl font-semibold mb-1">Tipo de TCC</h4>
-        <p class="text-xl">{{ estudante?.tipoTCC }}</p>
+      }
+      <div class="flex align-top gap-4">
+        <i class="pi pi-file mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+        <div>
+          <h4 class="text-xl font-semibold mb-1">Tipo de TCC</h4>
+          <p class="text-xl">{{ estudante?.tipoTCC }}</p>
+        </div>
+      </div>
+      <div class="flex align-top gap-4">
+        <i class="pi pi-bullseye mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
+        <div>
+          <h4 class="text-xl font-semibold mb-1">Objetivo com o TCC</h4>
+          <p class="text-xl">{{ estudante?.objetivoTCC }}</p>
+        </div>
       </div>
     </div>
-    <div class="flex align-top gap-4">
-      <i class="pi pi-bullseye mt-1" style="color: #007F3D; font-size: 1.5rem"></i>
-      <div>
-        <h4 class="text-xl font-semibold mb-1">Objetivo com o TCC</h4>
-        <p class="text-xl">{{ estudante?.objetivoTCC }}</p>
-      </div>
-    </div>
-  </div>
-  <div class="mb-8">
-    <h4 class="text-xl font-semibold mb-4">Temas</h4>
-    <div class="flex flex-wrap gap-2 mb-4">
-      @for (tema of estudante?.temas; track $index) {
+    <div class="mb-8">
+      <h4 class="text-xl font-semibold mb-4">Temas</h4>
+      <div class="flex flex-wrap gap-2 mb-4">
+        @for (tema of estudante?.temas; track $index) {
         <p-tag severity="secondary" [value]="tema" />
-      }
+        }
+      </div>
     </div>
-  </div>
-  <div class="mb-8">
-    <h4 class="text-xl font-semibold mb-4">Pontos Fortes</h4>
-    <div class="flex flex-wrap gap-2 mb-4">
-      @for (pontoForte of estudante?.pontosFortes; track $index) {
+    <div class="mb-8">
+      <h4 class="text-xl font-semibold mb-4">Pontos Fortes</h4>
+      <div class="flex flex-wrap gap-2 mb-4">
+        @for (pontoForte of estudante?.pontosFortes; track $index) {
         <p-tag class="mr-4" severity="success" [value]="pontoForte" />
-      }
+        }
+      </div>
     </div>
-  </div>
-  <div class="mb-8">
-    <h4 class="text-xl font-semibold mb-4">Pontos Fracos</h4>
-    <div class="flex flex-wrap gap-2 mb-4">
-      @for (pontoFraco of estudante?.pontosFracos; track $index) {
+    <div class="mb-8">
+      <h4 class="text-xl font-semibold mb-4">Pontos Fracos</h4>
+      <div class="flex flex-wrap gap-2 mb-4">
+        @for (pontoFraco of estudante?.pontosFracos; track $index) {
         <p-tag class="mr-4" severity="danger" [value]="pontoFraco" />
-      }
+        }
+      </div>
     </div>
-  </div>
-  @if (estudante?.disponibilidades && estudante!.disponibilidades.length > 0) {
-  <div>
-    <h4 class="text-xl font-semibold mb-4">Disponibilidade para trabalhar no TCC</h4>
-    <p-table [value]="estudante!.disponibilidades" showGridlines [tableStyle]="{ 'width': '40rem' }">
-      <ng-template #header>
-        <tr>
-          <th>Dia</th>
-          <th>Horários Disponíveis</th>
-          <th>Encontros</th>
-        </tr>
-      </ng-template>
-      <ng-template #body let-disponibilidade>
-        <tr>
-          <td>{{ disponibilidade.textoDiaSemana }}</td>
-          <td>{{ disponibilidade.horarios }}</td>
-          <td>{{ disponibilidade.encontros }}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  }
-</p-card>
+    @if (estudante?.disponibilidades && estudante!.disponibilidades.length > 0) {
+    <div>
+      <h4 class="text-xl font-semibold mb-4">Disponibilidade para trabalhar no TCC</h4>
+      <p-table [value]="estudante!.disponibilidades" showGridlines [tableStyle]="{ 'width': '40rem' }">
+        <ng-template #header>
+          <tr>
+            <th>Dia</th>
+            <th>Horários Disponíveis</th>
+            <th>Encontros</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-disponibilidade>
+          <tr>
+            <td>{{ disponibilidade.textoDiaSemana }}</td>
+            <td>{{ disponibilidade.horarios }}</td>
+            <td>{{ disponibilidade.encontros }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    }
+  </p-card>
+</ng-template>

@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { ConexaoService } from '../../conexoes/services/conexao.service';
 import { EstudanteService } from '../../shared/services/estudante/estudante.service';
@@ -22,6 +23,7 @@ import { AvatarModule } from '../../shared/components/avatar/avatar.module';
     TagModule,
     TableModule,
     AvatarModule,
+    SkeletonModule,
   ],
   providers: [EstudanteService, ConexaoService, MessageService],
   exports: [PerfilComponent],
