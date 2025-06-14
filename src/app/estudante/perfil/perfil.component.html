@@ -9,16 +9,20 @@
     aria-label="Voltar"
   />
   <div class="flex justify-between">
-    <div class="flex flex-row gap-4">
-      <app-avatar [nome]="estudante?.nome || ''" [src]="estudante?.foto || null" size="2xl" />
-      <div class="mt-5">
-        <h2 class="text-4xl font-semibold mb-2">{{ estudante?.nome }}</h2>
-        <p class="text-2xl mb-1">{{ estudante?.nomeCurso }} • {{ estudante?.turno }}</p>
-        <p class="text-2xl">{{ estudante?.semestreAtual }}º Semestre</p>
+    <div class="flex flex-col items-center md:flex-row md:items-start gap-4">
+      <app-avatar
+        [nome]="estudante?.nome || ''"
+        [src]="estudante?.foto || null"
+        size="2xl"
+      />
+      <div class="md:mt-5">
+        <h2 class="text-3xl md:text-4xl font-semibold mb-2">{{ estudante?.nome }}</h2>
+        <p class="text-xl md:text-2xl mb-1">{{ estudante?.nomeCurso }} • {{ estudante?.turno }}</p>
+        <p class="text-xl md:text-2xl">{{ estudante?.semestreAtual }}º Semestre</p>
       </div>
     </div>
     @if (!hasConexao && !isPersonalProfile) {
-      <div class="mt-5">
+      <div class="hidden md:block mt-5">
         <p-button
           label="Conectar"
           severity="primary"
@@ -77,21 +81,27 @@
   </div>
   <div class="mb-8">
     <h4 class="text-xl font-semibold mb-4">Temas</h4>
-    @for (tema of estudante?.temas; track $index) {
-    <p-tag class="mr-4" severity="secondary" [value]="tema" />
-    }
+    <div class="flex flex-wrap gap-2 mb-4">
+      @for (tema of estudante?.temas; track $index) {
+        <p-tag severity="secondary" [value]="tema" />
+      }
+    </div>
   </div>
   <div class="mb-8">
     <h4 class="text-xl font-semibold mb-4">Pontos Fortes</h4>
-    @for (pontoForte of estudante?.pontosFortes; track $index) {
-    <p-tag class="mr-4" severity="success" [value]="pontoForte" />
-    }
+    <div class="flex flex-wrap gap-2 mb-4">
+      @for (pontoForte of estudante?.pontosFortes; track $index) {
+        <p-tag class="mr-4" severity="success" [value]="pontoForte" />
+      }
+    </div>
   </div>
   <div class="mb-8">
     <h4 class="text-xl font-semibold mb-4">Pontos Fracos</h4>
-    @for (pontoFraco of estudante?.pontosFracos; track $index) {
-    <p-tag class="mr-4" severity="danger" [value]="pontoFraco" />
-    }
+    <div class="flex flex-wrap gap-2 mb-4">
+      @for (pontoFraco of estudante?.pontosFracos; track $index) {
+        <p-tag class="mr-4" severity="danger" [value]="pontoFraco" />
+      }
+    </div>
   </div>
   @if (estudante?.disponibilidades && estudante!.disponibilidades.length > 0) {
   <div>

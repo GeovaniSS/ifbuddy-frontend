@@ -1,4 +1,4 @@
-<header class="bg-primary shadow-md px-8 py-4 flex justify-between items-center">
+<header class="bg-primary shadow-md px-4 py-4 md:px-8 flex justify-between items-center">
   <div class="flex items-center">
     <a [routerLink]="['/']">
       <img src="assets/images/logo.png" alt="Logo do IFBuddy" class="w-[200px]">
@@ -33,7 +33,7 @@
       role="button"
       aria-label="Abrir menu do usuário"
     >
-      <span class="text-white font-medium hover:text-red">{{ usuario?.nome || 'Usuário' }}</span>
+      <span class="hidden md:block text-white font-medium hover:text-red">{{ usuario?.nome || 'Usuário' }}</span>
       <app-avatar
         [nome]="usuario?.nome || 'Usuário'"
         [src]="usuario?.foto || null"
