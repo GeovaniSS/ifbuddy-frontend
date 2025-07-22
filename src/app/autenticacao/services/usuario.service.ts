@@ -17,7 +17,7 @@ export class UsuarioService {
     private _tokenService: TokenService,
     private _autenticacaoService: AutenticacaoService,
   ) {
-    this.validarToken();
+    // this.validarToken();
   }
 
   get usuario() {
